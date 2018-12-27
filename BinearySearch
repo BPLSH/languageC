@@ -1,0 +1,42 @@
+#include<stdio.h>
+int BSearch(int arr[], int len, int target) {
+	int first = 0;
+	int last = len - 1;
+	int mid = 0;
+	while (first <= last) {
+		mid = (first + last) / 2;
+
+		if (arr[mid] == target ) { //target을 찾은경우
+			return mid; //index 리턴
+		}
+		else { //찾지 못한 경우
+			if (arr[mid] < target) { // 중간값보다 target이 큰 경우
+				first = mid + 1; // first값 변경
+			}
+			else { //중간값보다 target이 작은 경우
+				last = mid - 1; //last값 변경
+			}
+		}
+	}
+	return -1; //target이 arr에 존재하지 않을 경우
+} 
+int main(void) {
+	int arr[] = {10,20,30,40,50};
+	int idx = 0;
+	
+	idx = BSearch(arr, sizeof(arr) / sizeof(int), 30);
+	if (idx == -1) {
+		printf("탐색실패\n");
+	}
+	else {
+		printf("%d\n", idx);
+	}
+
+	idx = BSearch(arr, sizeof(arr) / sizeof(int), 15);
+	if (idx == -1) {
+		printf("탐색실패\n");
+	}
+	else {
+		printf("%d\n", idx);
+	}
+}
